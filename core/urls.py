@@ -20,6 +20,10 @@ from django.urls import path, include
 v1_patterns = [
     path('', include('apps.bins.api.v1.urls')),
     path('', include('apps.circuits.api.v1.urls')),
+    path('', include('apps.drivers.api.v1.urls')),
+    path('', include('apps.billing.api.v1.urls')),
+    path('', include('apps.notifications.api.v1.urls')),
+    path('', include('apps.routing.api.v1.urls')),
 ]
 
 urlpatterns = [
