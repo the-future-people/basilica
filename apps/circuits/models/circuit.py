@@ -9,12 +9,12 @@ class Circuit(models.Model):
         INACTIVE = 'inactive', 'Inactive'
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=100, help_text="e.g. Accra Circuit 1")
+    name = models.CharField(max_length=100)
     code = models.CharField(max_length=20, unique=True, help_text="e.g. ACC-001")
     description = models.TextField(blank=True)
     status = models.CharField(max_length=20, choices=Status.choices, default=Status.ACTIVE)
 
-    # Geographic center of the circuit
+    # Geographic center
     center_latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     center_longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
 
