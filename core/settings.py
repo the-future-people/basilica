@@ -35,6 +35,7 @@ LOCAL_APPS = [
     'apps.drivers',
     'apps.billing',
     'apps.notifications',
+    'apps.core_auth',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -122,3 +123,20 @@ REST_FRAMEWORK = {
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# JWT Authentication
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=8),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'AUTH_HEADER_TYPES': ('Bearer',),
+}
+
+# Update DRF to use JWT
+REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] = [
+    'apps.core_auth.authentication.BasilicaJWTAuthentication',
+]
